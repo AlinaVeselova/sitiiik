@@ -662,30 +662,35 @@ body::before {
     z-index: 30000; /* Ставим супервысокий z-index */
 }
 
-.confetti {
-    position: absolute;
-    /* Изначально ставим их все в центр */
-    left: 50%;
-    top: 50%;
-    font-size: 25px;
-    /* ! ВАЖНО: Используем комбинированную анимацию: разлет + вращение */
-    animation: realExplode 1.5s ease-out forwards;
-    /* Чтобы они исчезали в конце */
-    opacity: 0; 
-}
 
 @keyframes realExplode {
-    /* Начало: все в центре, размер нормальный */
+    /* Начало: все в центре, яркие */
     0% { 
         transform: translate(-50%, -50%) scale(1); 
         opacity: 1; 
     }
     
-    /* Финиш: летим по вектору (var(--x), var(--y)) и уменьшаемся */
+    /* Середина (1.5 сек): максимальный разлет, вращение */
+    50% { 
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(360deg);
+        opacity: 1;
+    }
+    
+    /* Финиш (3 сек): улетают далеко и плавно тают */
     100% { 
-        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(0.2); 
+        transform: translate(calc(-50% + var(--x) * 1.3), calc(-50% + var(--y) * 1.3)) rotate(720deg); 
         opacity: 0; 
     }
+}
+
+.confetti {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 25px;
+    /* Применяем новую анимацию длительностью 3 секунды */
+    animation: realExplode 3s ease-out forwards;
+    pointer-events: none;
 }
 
 .gift-item {
