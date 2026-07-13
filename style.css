@@ -340,6 +340,8 @@ body::before {
     text-align: left;
     max-height: 150px;
     overflow-y: auto;
+    position: relative;
+    z-index: 10;
 }
 
 .track-item {
