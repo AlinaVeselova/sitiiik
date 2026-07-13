@@ -221,7 +221,7 @@ function startFullscreenGame() {
     
     const interval = setInterval(() => {
         // Условие победы (можно изменить количество очков здесь)
-        if (score >= 2) {
+        if (score >= 10) {
             clearInterval(interval);
             showFireworks();
             
@@ -303,5 +303,5 @@ function showFireworks() {
     }
 
     // 3. Удаляем контейнер после окончания анимации
-    setTimeout(() => container.remove(), 2000);
+    setTimeout(() => container.remove(), 3200);
 }
