@@ -224,6 +224,17 @@
                 </div>
         </section>
 
+        <!-- Игровой слой (сначала скрыт) -->
+<div id="game-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 10000; cursor: crosshair;">
+    <div id="game-area-full" style="width: 100%; height: 100%; position: relative;"></div>
+</div>
+
+<!-- Кнопка запуска игры на сайте -->
+<section class="block" style="text-align: center;">
+    <button class="win95-btn" onclick="startFullscreenGame()">🎁 НАЧАТЬ ОХОТУ ЗА ПОДАРКАМИ!</button>
+</section>
+
+        
         <section class="block" style="text-align: center;">
             <button class="win95-btn alert-trigger-btn" onclick="startErrorChain()">⚠️ НЕ НАЖИМАТЬ!</button>
         </section>
