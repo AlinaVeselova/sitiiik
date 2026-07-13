@@ -203,3 +203,103 @@ function nextError() {
 function closeError() {
     document.getElementById('error-overlay').style.display = 'none';
 }
+
+let score = 0;
+
+function startFullscreenGame() {
+    const overlay = document.getElementById('game-overlay');
+    const gameArea = document.getElementById('game-area-full');
+    
+    // Показываем слой с игрой
+    overlay.style.display = 'block';
+    score = 0;
+    
+    // Очищаем поле перед запуском
+    gameArea.innerHTML = '';
+    
+    const interval = setInterval(() => {
+        // Условие победы (можно изменить количество очков здесь)
+        if (score >= 2) {
+            clearInterval(interval);
+            showFireworks();
+            
+            // Закрываем игру через 2 секунды после победы
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                gameArea.innerHTML = '';
+            }, 2000);
+            return;
+        }
+        createGiftFullscreen(gameArea);
+    }, 1200); // Подарки появляются каждые 1.2 секунды
+}
+
+function createGiftFullscreen(area) {
+    const gift = document.createElement('img');
+    
+    // Убедись, что путь к картинке верный
+    gift.src = 'img/gift.png'; 
+    gift.className = 'gift-item';
+    gift.style.position = 'absolute';
+    
+    // Размер картинки
+    gift.style.width = '60px'; 
+    gift.style.height = '60px';
+    
+    // Случайные координаты (5% - 85% экрана)
+    gift.style.left = (Math.random() * 80 + 5) + '%';
+    gift.style.top = (Math.random() * 80 + 5) + '%';
+    
+    // Обработка клика
+    gift.onclick = (e) => {
+        score++;
+        gift.remove();
+        // Можно добавить звук при клике, если хочешь
+    };
+    
+    area.appendChild(gift);
+    
+    // Подарок исчезает через 2.5 секунды, если не успели нажать
+    setTimeout(() => {
+        if (gift.parentElement) {
+            gift.remove();
+        }
+    }, 1200); 
+}
+
+function showFireworks() {
+    // 1. Создаем контейнер для салюта
+    const container = document.createElement('div');
+    container.className = 'confetti-container';
+    document.body.appendChild(container);
+
+    // 2. Создаем 60 частиц
+    for (let i = 0; i < 60; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti';
+        
+        // Разные эмодзи
+        const symbols = ['✨', '🎈', '🎉', '🌟', '💖', '💥', '🎊'];
+        c.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        
+        // Математика разлета: скорость и угол
+        const angle = Math.random() * Math.PI * 2; // Случайный угол (радианы)
+        const velocity = Math.random() * 150 + 100; // Случайная скорость (пиксели)
+        
+        // Вычисляем конечные координаты X и Y
+        const tx = Math.cos(angle) * velocity;
+        const ty = Math.sin(angle) * velocity;
+        
+        // Записываем их в CSS-переменные для каждого элемента
+        c.style.setProperty('--x', `${tx}px`);
+        c.style.setProperty('--y', `${ty}px`);
+        
+        // Добавляем случайную задержку старта для реалистичности
+        c.style.animationDelay = `${Math.random() * 0.3}s`;
+        
+        container.appendChild(c);
+    }
+
+    // 3. Удаляем контейнер после окончания анимации
+    setTimeout(() => container.remove(), 2000);
+}
