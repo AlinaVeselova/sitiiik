@@ -639,3 +639,63 @@ body::before {
         transform: scale(1.1);
     }
 }
+
+/* Делаем подарки кликабельными и приятными */
+.gift-item {
+    cursor: pointer;
+    animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+/* Стили для контейнера салюта, чтобы частицы летели из центра */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 30000; /* Ставим супервысокий z-index */
+}
+
+.confetti {
+    position: absolute;
+    /* Изначально ставим их все в центр */
+    left: 50%;
+    top: 50%;
+    font-size: 25px;
+    /* ! ВАЖНО: Используем комбинированную анимацию: разлет + вращение */
+    animation: realExplode 1.5s ease-out forwards;
+    /* Чтобы они исчезали в конце */
+    opacity: 0; 
+}
+
+@keyframes realExplode {
+    /* Начало: все в центре, размер нормальный */
+    0% { 
+        transform: translate(-50%, -50%) scale(1); 
+        opacity: 1; 
+    }
+    
+    /* Финиш: летим по вектору (var(--x), var(--y)) и уменьшаемся */
+    100% { 
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(0.2); 
+        opacity: 0; 
+    }
+}
+
+.gift-item {
+    cursor: pointer;
+    transition: transform 0.2s;
+    /* Чтобы картинки не искажались */
+    object-fit: contain; 
+}
+
+/* Эффект при наведении (если с компа) */
+.gift-item:hover {
+    transform: scale(1.2) rotate(10deg);
+}
