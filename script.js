@@ -305,3 +305,21 @@ function showFireworks() {
     // 3. Удаляем контейнер после окончания анимации
     setTimeout(() => container.remove(), 3200);
 }
+
+const slider = document.getElementById('mood-slider');
+const emoji = document.getElementById('mood-emoji');
+const text = document.getElementById('mood-text');
+
+const moods = {
+    1: { icon: '😡', label: 'Ужасно' },
+    2: { icon: '☹️', label: 'Не очень' },
+    3: { icon: '😐', label: 'Средне' },
+    4: { icon: '😊', label: 'Хорошо' },
+    5: { icon: '🥰', label: 'В восторге!' }
+};
+
+slider.addEventListener('input', () => {
+    const val = slider.value;
+    emoji.innerText = moods[val].icon;
+    text.innerText = moods[val].label;
+});
