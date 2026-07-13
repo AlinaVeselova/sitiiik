@@ -38,7 +38,7 @@ const tracks = [
     { src: 'audio/track1.mp3', title: 'TRACK 1: CATHARSIS.mp3' },
     { src: 'audio/track2.mp3', title: 'TRACK 2: KOSMOS.mp3' },
     { src: 'audio/track3.mp3', title: 'TRACK 3: POD LUNOY.mp3' },
-    { src: 'audio/track4.mp3', title: 'TRACK 4: PADAT\' V GRYAZ.mp3' },
+    { src: 'audio/track4.mp3', title: 'TRACK 4: PADAT V GRYAZ.mp3' },
     { src: 'audio/track5.mp3', title: 'TRACK 5: BESKONECHNOYE LETO.mp3' }
 ];
 
