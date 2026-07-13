@@ -249,6 +249,18 @@
         <p id="mood-text" style="font-size: 10px; margin-top: 10px;">Средне</p>
     </div>
 </section>
+
+        <!-- Окно благодарности -->
+<div id="thanks-window" class="window-frame" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; width: 250px;">
+    <div class="window-header">
+        <span class="window-title">feedback.exe</span>
+        <button onclick="closeThanks()" style="border: none; background: #ced0cf;">X</button>
+    </div>
+    <div class="window-body" style="padding: 20px; text-align: center;">
+        <p>Спасибо за оценку! 😊</p>
+        <button class="win95-btn" onclick="closeThanks()">OK</button>
+    </div>
+</div>
         
         <section class="block" style="text-align: center;">
             <button class="win95-btn alert-trigger-btn" onclick="startErrorChain()">⚠️ НЕ НАЖИМАТЬ!</button>
