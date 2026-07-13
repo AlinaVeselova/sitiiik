@@ -706,3 +706,22 @@ body::before {
 .gift-item:hover {
     transform: scale(1.2) rotate(10deg);
 }
+
+#mood-slider {
+    appearance: none;
+    height: 10px;
+    background: #ced0cf;
+    border: 2px solid #7f7f7f;
+    outline: none;
+}
+/* Ползунок (thumb) — делаем его серым квадратиком */
+#mood-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #ced0cf;
+    border: 2px solid #fff;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+    cursor: pointer;
+}
