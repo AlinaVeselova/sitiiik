@@ -220,7 +220,7 @@ function startFullscreenGame() {
     gameArea.innerHTML = '';
     
     const interval = setInterval(() => {
-        // Условие победы (можно изменить количество очков здесь)
+        // Условие победы(можно изменить количество очков здесь)
         if (score >= 10) {
             clearInterval(interval);
             showFireworks();
