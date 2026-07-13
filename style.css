@@ -12,10 +12,34 @@
 body {
     font-family: 'Press Start 2P', monospace;
     font-size: 11px;
-    color: #000; /* Текст в окнах преимущественно черный */
-    background-color: #1a0b2e; /* Стартовый глубокий фиолетовый */
+    color: #000;
+    /* Меняем стартовый цвет body на наш любимый фиолетовый */
+    background-color: #38255c; 
     scroll-behavior: smooth;
     overflow-x: hidden;
+}
+
+/* --- ЕДИНЫЙ МУЛЬТИ-ФОН ДЛЯ ВСЕГО САЙТА БЕЗ ТЕМНЫХ КУСКОВ --- */
+#cover-page, #main-content {
+    /* Убираем отсюда индивидуальные цвета, чтобы они не наслаивались друг на друга */
+    background: transparent; 
+}
+
+/* Делаем так, чтобы фоновые звездочки покрывали абсолютно весь скролл сайта равномерно */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 1px, transparent 1px),
+        radial-gradient(circle at 75% 60%, rgba(255,255,255,0.2) 2px, transparent 2px),
+        radial-gradient(circle at 50% 85%, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 80px 80px, 120px 120px, 70px 70px;
+    z-index: -1; /* Уводим под все окна и под мигающие звездочки */
+    pointer-events: none;
 }
 
 /* --- ВОЗВРАЩАЕМ ЛЮБИМЫЙ ФИОЛЕТОВЫЙ ФОН СО ЗВЁЗДАМИ ДЛЯ ОБЕИХ СТРАНИЦ --- */
