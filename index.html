@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>history.exe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Мерцающие пиксельные звёздочки на фоне -->
+    <div class="pixel-star" style="top: 10%; left: 15%; animation-delay: 0s;">✦</div>
+    <div class="pixel-star" style="top: 25%; left: 80%; animation-delay: 0.4s;">✦</div>
+    <div class="pixel-star" style="top: 45%; left: 8%; animation-delay: 1.2s;">✦</div>
+    <div class="pixel-star" style="top: 60%; left: 88%; animation-delay: 0.8s;">✦</div>
+    <div class="pixel-star" style="top: 75%; left: 20%; animation-delay: 1.6s;">✦</div>
+    <div class="pixel-star" style="top: 90%; left: 75%; animation-delay: 0.2s;">✦</div>
+    <div class="pixel-star" style="top: 90%; left: 50%; animation-delay: 0.2s;">✦</div>
+    <div class="pixel-star" style="top: 30%; left: 74%; animation-delay: 0.2s;">✦</div>
+    <div class="pixel-star" style="top: 60%; left: 75%; animation-delay: 0.2s;">✦</div>
+
+    <!-- ЭКРАН 1: ОБЛОЖКА (Вход в систему) -->
+    <section id="cover-page">
+        <div class="cover-content">
+            <div class="window-frame">
+                <div class="window-header">
+                    <span class="window-title">login.exe</span>
+                    <div class="window-buttons"><span>_</span><span>🔲</span><span>X</span></div>
+                </div>
+                <div class="window-body">
+                    <div class="avatar-wrapper">
+                        <img src="img/photo_main.jpg" alt="Мы" class="main-avatar">
+                    </div>
+                    <div class="password-box">
+                        <input type="text" id="pass-input" placeholder="PASSWORD...">
+                        <p id="error-msg">ACCESS DENIED. TRY AGAIN! DD.MM.YYYY </p>
+                    </div>
+                    <button id="open-btn" onclick="checkPasswordAndScroll()">ENTER</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ЭКРАН 2: ОСНОВНАЯ СИСТЕМА (Показывается после ввода пароля) -->
+    <main id="main-content">
+
+        <!-- Блок 2: Окно Истории -->
+        <section class="block window-frame">
+            <div class="window-header">
+                <span class="window-title">history.txt</span>
+                <div class="window-buttons"><span>_</span><span>🔲</span><span>X</span></div>
+            </div>
+            <div class="window-body">
+                <p class="block-subtitle">Как создавалась эта легендарная дружба</p>
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <div class="timeline-year">v20.24</div>
+                        <div class="timeline-card">
+                            <img src="img/photo2024.jpg" alt="2024">
+                            <p>Помнишь, как всё закрутилось? Эпоха безумных планов, долгих переписок и первых общих шуток, которые понимаем только мы вдвоем! ✨</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">v20.25</div>
+                        <div class="timeline-card">
+                            <img src="img/photo2025.jpg" alt="2025">
+                            <p>Год, официально спонсированный бесконечными созвонами, обсуждениями всего на свете и самыми душевными моментами. Проверено временем!</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">v20.26</div>
+                        <div class="timeline-card">
+                            <img src="img/photo2026.jpg" alt="2026">
+                            <p>Наш текущий год! Мы прошли через кучу дедлайнов, задач и приключений. Дальше — только круче и эпичнее 🚀</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <!-- Блок 3: Окно Плеера (Retro Media Player) -->
+        <section class="block window-frame">
+            <div class="window-header">
+                <span class="window-title">mplayer.exe</span>
+                <div class="window-buttons"><span>_</span><span>🔲</span><span>X</span></div>
+            </div>
+            <div class="window-body">
+                <div class="player-container">
+                    
+                    <!-- Скрытый аудиоэлемент -->
+                    <audio id="audio-player" src="audio/track1.mp3"></audio>
+
+                    <div class="vinyl-wrapper">
+                        <img src="img/vinyl.png" alt="Vinyl" class="vinyl-disk" id="player-vinyl">
+                    </div>
+                    
+                    <!-- Информационное табло -->
+                    <div class="player-display">
+                        <p class="now-playing" id="track-title">TRACK 1: SUMMER_HIT.MP3</p>
+                        <p class="time-display" id="time-display">00:00</p>
+                    </div>
+
+                    <!-- Панель управления в стиле Windows 95 -->
+                    <div class="player-controls">
+                        <button class="win95-btn ctrl-btn" onclick="prevTrack()">⏮</button>
+                        <button class="win95-btn ctrl-btn" id="play-btn" onclick="togglePlay()">▶</button>
+                        <button class="win95-btn ctrl-btn" onclick="nextTrack()">⏭</button>
+                    </div>
+
+                    <!-- Интерактивный список треков -->
+                    <ul class="tracklist-win95">
+                        <li class="track-item active" onclick="selectTrack(0, 'audio/track1.mp3', 'TRACK 1: SUMMER_HIT.MP3')">01. Наш главный хит лета.mp3</li>
+                        <li class="track-item" onclick="selectTrack(1, 'audio/track2.mp3', 'TRACK 2: NIGHT_TALKS.MP3')">02. Саундтрек к ночным посиделкам.mp3</li>
+                        <li class="track-item" onclick="selectTrack(2, 'audio/track3.mp3', 'TRACK 3: TRIP_MEMORIES.MP3')">03. Песня из той самой поездки.mp3</li>
+                        <li class="track-item" onclick="selectTrack(3, 'audio/track4.mp3', 'TRACK 4: TRIP_MEMORIES.MP3')">04. Песня из той самой поездки.mp3</li>
+                        <li class="track-item" onclick="selectTrack(4, 'audio/track5.mp3', 'TRACK 5: TRIP_MEMORIES.MP3')">05. Песня из той самой поездки.mp3</li>
+                    </ul>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Блок 4: Окно Гадания -->
+        <section class="block window-frame">
+            <div class="window-header">
+                <span class="window-title">prediction.dat</span>
+                <div class="window-buttons"><span>_</span><span>🔲</span><span>X</span></div>
+            </div>
+            <div class="window-body">
+                <p class="hint">[ ТАПНИ НА КАРТУ ]</p>
+                <div class="horoscope-grid">
+                    <div class="card-wrapper" onclick="flipCard(this)">
+                        <div class="h-card">
+                            <div class="card-front"><br><br>ЛЮБОВЬ</div>
+                            <div class="card-back">Тебя ждет год, полный тепла! А твоя лучшая подруга будет любить тебя еще сильнее.</div>
+                        </div>
+                    </div>
+                    <div class="card-wrapper" onclick="flipCard(this)">
+                        <div class="h-card">
+                            <div class="card-front"><br><br>УЧЕБА</div>
+                            <div class="card-back">Успех неизбежен! Все дедлайны будут побеждены твоею гениальностью.</div>
+                        </div>
+                    </div>
+                    <div class="card-wrapper" onclick="flipCard(this)">
+                        <div class="h-card">
+                            <div class="card-front"><br><br>ОТДЫХ</div>
+                            <div class="card-back">Звезды шепчут: впереди много вкусной еды и идеальные ночи кино.</div>
+                        </div>
+                    </div>
+                    <div class="card-wrapper" onclick="flipCard(this)">
+                        <div class="h-card">
+                            <div class="card-front"><br><br>КАРТА ДНЯ</div>
+                            <div class="card-back">
+                                <img src="img/prediction4.jpg" alt="Destiny Photo" class="card-img">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+<!-- Блок: Ретро Paint (Идея 2) -->
+        <section class="block window-frame">
+            <div class="window-header">
+                <span class="window-title">p_paint.exe</span>
+                <div class="window-buttons"><span>_</span><span>🔲</span><span>X</span></div>
+            </div>
+            <div class="window-body">
+                <p class="hint">[ ОСТАВЬ СВОЙ РИСУНОК ]</p>
+                <div class="paint-container">
+                    <canvas id="paintCanvas" width="300" height="200"></canvas>
+                    <div class="paint-controls">
+                        <button class="win95-btn" onclick="clearCanvas()">ОЧИСТИТЬ</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Блок: Тамагочи (Идея 5) -->
+        <section class="block window-frame">
+            <div class="window-header">
+                <span class="window-title">tamagotchi.exe</span>
+                <div class="window-buttons"><span>_</span><span>🔲</span><span>X</span></div>
+            </div>
+            <div class="window-body">
+                <div class="pet-container">
+                    <div class="pet-screen">
+                        <!-- Пиксельный котик из символов -->
+                        <pre id="pet-art">
+ (\_/)
+ ( •.•)
+ / >🍟
+                        </pre>
+                        <p id="pet-status">СТАТУС: ЖДЕТ ВОК...</p>
+                    </div>
+                    <div class="pet-buttons">
+                        <button class="win95-btn pet-btn" onclick="feedPet()">🥢 ВОК</button>
+                        <button class="win95-btn pet-btn" onclick="dancePet()">🎸 ТАНЕЦ</button>
+                        <button class="win95-btn pet-btn" onclick="sleepPet()">💤 СТАТУС</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Блок 5: Окно Поздравления -->
+        <section class="block window-frame">
+            <div class="window-header">
+                <span class="window-title">love_letter.txt</span>
+                <div class="window-buttons"><span>_</span><span>🔲</span><span>X</span></div>
+            </div>
+            <div class="window-body">
+                <div class="congratulation-box">
+                    <p>Дорогая моя! В этот особенный день хочу сказать тебе огромное спасибо за то, что ты есть в моей жизни. Ты невероятный, чуткий, безумно веселый и талантливый человек.</p>
+                    <p>Пусть этот твой новый личный год принесет море вдохновения, улыбок и исполнения всех-всех желаний. А я всегда буду рядом! Празднуй на полную! 🎂✨</p>
+                </div>
+                <div class="gift-box">
+                    <h3>SURPRISE.ZIP:</h3>
+                    <p class="gift-hint">сходи на вбшку</p>
+                    <div class="qr-placeholder">📱 [QR-КОД]</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="block" style="text-align: center;">
+            <button class="win95-btn alert-trigger-btn" onclick="startErrorChain()">⚠️ НЕ НАЖИМАТЬ!</button>
+        </section>
+
+        <!-- Шаблоны для всплывающих окон ошибок (Изначально скрыты) -->
+        <div id="error-overlay" class="error-overlay">
+            <div id="error-box" class="window-frame error-window">
+                <div class="window-header">
+                    <span class="window-title" id="error-title">SYSTEM ALERT</span>
+                    <div class="window-buttons"><span onclick="closeError()">X</span></div>
+                </div>
+                <div class="window-body error-body-layout">
+                    <span class="error-icon">⚠️</span>
+                    <div class="error-text-container">
+                        <p id="error-text">Критическая ошибка!</p>
+                        <button class="win95-btn error-ok-btn" id="error-action-btn" onclick="nextError()">ОК</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

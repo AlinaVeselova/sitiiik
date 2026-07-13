@@ -1,0 +1,617 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    /* Устанавливаем ретро-курсор */
+    cursor: url('https://cur.cursors-4u.net/arrows/arr-11/arr1061.cur'), default !important;
+}
+
+body {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    color: #000; /* Текст в окнах преимущественно черный */
+    background-color: #1a0b2e; /* Стартовый глубокий фиолетовый */
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* --- ВОЗВРАЩАЕМ ЛЮБИМЫЙ ФИОЛЕТОВЫЙ ФОН СО ЗВЁЗДАМИ ДЛЯ ОБЕИХ СТРАНИЦ --- */
+#cover-page, #main-content {
+    background-color: #38255c; 
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 1px, transparent 1px),
+        radial-gradient(circle at 75% 60%, rgba(255,255,255,0.2) 2px, transparent 2px),
+        radial-gradient(circle at 50% 85%, rgba(255,255,255,0.1) 1px, transparent 1px),
+        linear-gradient(rgba(0, 0, 0, 0.1) 50%, transparent 50%);
+    background-size: 80px 80px, 120px 120px, 70px 70px, 100% 6px;
+}
+
+#cover-page {
+    height: 100vh;
+    height: -webkit-fill-available;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* --- КЛАСС КЛАССИЧЕСКОГО ОКНА WINDOWS 95 --- */
+.window-frame {
+    width: 100%;
+    max-width: 350px;
+    background-color: #ced0cf; /* Серый цвет окон */
+    border-top: 3px solid #fff;
+    border-left: 3px solid #fff;
+    border-right: 3px solid #7f7f7f;
+    border-bottom: 3px solid #7f7f7f;
+    box-shadow: 3px 3px 0px #000;
+    margin: 0 auto;
+}
+
+/* Строка заголовка окна */
+.window-header {
+    background: linear-gradient(90deg, #1018a8, #7ca8fc); /* Синий винтажный градиент */
+    padding: 6px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ced0cf;
+}
+
+.window-title {
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+/* Кнопочки справа: _ 🔲 X */
+.window-buttons {
+    display: flex;
+    gap: 3px;
+}
+
+.window-buttons span {
+    background: #ced0cf;
+    color: #000;
+    font-size: 8px;
+    font-weight: bold;
+    width: 16px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #7f7f7f;
+    border-bottom: 1px solid #7f7f7f;
+}
+
+/* Внутреннее тело окна */
+.window-body {
+    padding: 16px 12px;
+}
+
+/* --- ОФОРМЛЕНИЕ ВНУТРЕННОСТЕЙ ОБЛОЖКИ --- */
+.avatar-wrapper {
+    background: #fff;
+    padding: 6px;
+    border-top: 2px solid #7f7f7f;
+    border-left: 2px solid #7f7f7f;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    margin: 0 auto 20px auto;
+    width: 162px;
+}
+
+.main-avatar {
+    width: 146px;
+    height: 146px;
+    object-fit: cover;
+    display: block;
+}
+
+#pass-input {
+    width: 100%;
+    padding: 12px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    background-color: #fff;
+    color: #000;
+    border-top: 3px solid #7f7f7f;
+    border-left: 3px solid #7f7f7f;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    text-align: center;
+    outline: none;
+}
+
+#error-msg {
+    color: #c00000;
+    font-size: 8px;
+    margin-top: 10px;
+    text-align: center;
+    display: none;
+    line-height: 1.4;
+}
+
+#open-btn {
+    width: 100%;
+    padding: 12px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    font-weight: bold;
+    background-color: #ced0cf;
+    color: #000;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-right: 3px solid #7f7f7f;
+    border-bottom: 3px solid #7f7f7f;
+    margin-top: 15px;
+}
+
+#open-btn:active {
+    border-top: 3px solid #7f7f7f;
+    border-left: 3px solid #7f7f7f;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    padding-top: 13px;
+    padding-left: 13px;
+}
+
+/* --- СТРАНИЦА КОНТЕНТА --- */
+#main-content {
+    display: none;
+    padding: 30px 15px 50px 15px;
+    width: 100%;
+}
+
+.block {
+    margin-bottom: 40px;
+}
+
+.block-subtitle {
+    font-size: 8px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* --- БЛОК 2: ТАЙМЛАЙН --- */
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.timeline-year {
+    font-size: 10px;
+    font-weight: bold;
+    color: #1018a8;
+    margin-bottom: 5px;
+}
+
+.timeline-card {
+    background: #fff;
+    border-top: 2px solid #7f7f7f;
+    border-left: 2px solid #7f7f7f;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    padding: 10px;
+}
+
+.timeline-card img {
+    width: 100%;
+    height: auto;
+    border: 2px solid #ced0cf;
+    margin-bottom: 10px;
+}
+
+.timeline-card p {
+    font-size: 9px;
+    line-height: 1.5;
+    color: #000;
+}
+
+/* --- БЛОК 3: РЕТРО-ПЛЕЕР --- */
+.player-container {
+    text-align: center;
+    background: #ced0cf;
+    padding: 5px;
+}
+
+/* Табло плеера (вдавленное, темно-зеленое или черное, как на старой технике) */
+.player-display {
+    background-color: #000;
+    color: #00ff00; /* Зеленый пиксельный монохромный текст */
+    font-family: 'Press Start 2P', monospace;
+    padding: 10px;
+    border-top: 2px solid #7f7f7f;
+    border-left: 2px solid #7f7f7f;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.now-playing {
+    font-size: 8px;
+    color: #00ff00 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px;
+}
+
+.time-display {
+    font-size: 10px;
+    color: #00ff00;
+}
+
+/* Виниловая пластинка (анимация теперь контролируется через класс .playing) */
+.vinyl-wrapper {
+    margin: 10px auto 15px auto;
+    width: 90px;
+    height: 90px;
+}
+
+.vinyl-disk {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: rotateVinyl 4s linear infinite;
+    animation-play-state: paused; /* По дефолту стоит на паузе */
+}
+
+.vinyl-disk.playing {
+    animation-play-state: running; /* Крутится только при воспроизведении */
+}
+
+@keyframes rotateVinyl {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Кнопки управления */
+.player-controls {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+.win95-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    background-color: #ced0cf;
+    color: #000;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #7f7f7f;
+    border-bottom: 2px solid #7f7f7f;
+    cursor: pointer;
+    padding: 8px 12px;
+}
+
+.win95-btn:active {
+    border-top: 2px solid #7f7f7f;
+    border-left: 2px solid #7f7f7f;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+}
+
+/* Список треков как проводник Windows */
+.tracklist-win95 {
+    background: #fff;
+    border-top: 2px solid #7f7f7f;
+    border-left: 2px solid #7f7f7f;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    list-style: none;
+    padding: 5px;
+    text-align: left;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.track-item {
+    font-size: 8px;
+    padding: 6px;
+    cursor: pointer;
+    color: #000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* Синее выделение активного трека в стиле выделения папки */
+.track-item.active {
+    background-color: #1018a8;
+    color: #fff;
+}
+
+/* --- БЛОК 4: ГАДАНИЕ --- */
+.hint {
+    text-align: center;
+    font-size: 8px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.horoscope-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    perspective: 1000px;
+}
+
+.card-wrapper {
+    height: 120px;
+}
+
+.h-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.4s ease;
+}
+
+.card-wrapper.flipped .h-card {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    text-align: center;
+}
+
+/* Рубашка (стиль пастельной папки Paint) */
+.card-front {
+    background: #e3d7ff;
+    color: #1018a8;
+    font-size: 9px;
+    font-weight: bold;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #7f7f7f;
+    border-bottom: 2px solid #7f7f7f;
+}
+
+/* Предсказание */
+.card-back {
+    background: #fff;
+    color: #000;
+    transform: rotateY(180deg);
+    font-size: 7px;
+    line-height: 1.4;
+    border-top: 2px solid #7f7f7f;
+    border-left: 2px solid #7f7f7f;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+}
+
+/* --- БЛОК 5: ПОЗДРАВЛЕНИЕ --- */
+.congratulation-box {
+    font-size: 9px;
+    line-height: 1.6;
+    background: #fff;
+    padding: 12px;
+    border-top: 2px solid #7f7f7f;
+    border-left: 2px solid #7f7f7f;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    margin-bottom: 20px;
+}
+
+.congratulation-box p {
+    margin-bottom: 8px;
+}
+
+.gift-box {
+    background: #ced0cf;
+    border-top: 2px solid #7f7f7f;
+    border-left: 2px solid #7f7f7f;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    padding: 15px 10px;
+    text-align: center;
+}
+
+.gift-box h3 {
+    font-size: 9px;
+    color: #1018a8;
+    margin-bottom: 8px;
+}
+
+.gift-hint {
+    font-size: 7px;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+.qr-placeholder {
+    width: 110px;
+    height: 110px;
+    background: #fff;
+    border-top: 2px solid #7f7f7f;
+    border-left: 2px solid #7f7f7f;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: #7f7f7f;
+}
+
+/* --- СТИЛИ ДЛЯ ФОТО ВНУТРИ КАРТ --- */
+.card-back {
+    padding: 0 !important; /* Убираем внутренние отступы, чтобы фото было во всю карту */
+    overflow: hidden;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Картинка красиво заполнит пространство без искажения пропорций */
+    display: block;
+}
+/* --- СТИЛИ ДЛЯ ВСТРОЕННОГО PAINT --- */
+.paint-container {
+    text-align: center;
+}
+
+#paintCanvas {
+    background: #fff;
+    border-top: 2px solid #7f7f7f;
+    border-left: 2px solid #7f7f7f;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    display: block;
+    margin: 0 auto 10px auto;
+    touch-action: none; /* Отключает скролл экрана при рисовании пальцем */
+    cursor: crosshair !important;
+}
+
+.paint-controls {
+    display: flex;
+    justify-content: center;
+}
+
+/* --- СТИЛИ ДЛЯ ТАМАГОЧИ --- */
+.pet-container {
+    text-align: center;
+}
+
+.pet-screen {
+    background: #a3b899; /* Ретро зелено-серый ЖК-экран */
+    font-family: monospace;
+    color: #1c2e15;
+    padding: 15px;
+    border-top: 2px solid #7f7f7f;
+    border-left: 2px solid #7f7f7f;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    margin-bottom: 12px;
+}
+
+#pet-art {
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#pet-status {
+    font-size: 8px;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.pet-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.pet-btn {
+    font-size: 8px !important;
+    padding: 6px 8px !important;
+}
+
+/* --- СТИЛИ ДЛЯ ЦЕПОЧКИ ОШИБОК --- */
+.alert-trigger-btn {
+    background: #ff5555 !important;
+    color: #fff !important;
+    font-weight: bold;
+    padding: 15px !important;
+    box-shadow: 3px 3px 0px #000;
+}
+
+.error-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.error-window {
+    animation: popError 0.15s linear;
+}
+
+@keyframes popError {
+    0% { transform: scale(0.8); }
+    100% { transform: scale(1); }
+}
+
+.error-body-layout {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.error-icon {
+    font-size: 32px;
+}
+
+.error-text-container {
+    text-align: left;
+    flex-grow: 1;
+}
+
+.error-text-container p {
+    font-size: 9px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.error-ok-btn {
+    min-width: 70px;
+    display: block;
+    margin-left: auto;
+}
+
+/* --- ПРАВИЛЬНОЕ МЕРЦАНИЕ ОТДЕЛЬНЫХ ЗВЕЗД --- */
+.pixel-star {
+    position: fixed;
+    color: #fff;
+    font-size: 14px;
+    font-family: monospace;
+    pointer-events: none; /* Чтобы по ним нельзя было случайно кликнуть */
+    z-index: 0; /* Уходят на самый задний план, под окна */
+    animation: loneStarBlink 2.5s ease-in-out infinite;
+}
+
+@keyframes loneStarBlink {
+    0%, 100% {
+        opacity: 0.1;
+        transform: scale(0.7);
+    }
+    50% {
+        opacity: 0.9;
+        transform: scale(1.1);
+    }
+}
