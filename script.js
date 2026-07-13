@@ -323,3 +323,12 @@ slider.addEventListener('input', () => {
     emoji.innerText = moods[val].icon;
     text.innerText = moods[val].label;
 });
+
+// Добавь эту функцию в script.js
+function showThanks() {
+    document.getElementById('thanks-window').style.display = 'block';
+}
+
+function closeThanks() {
+    document.getElementById('thanks-window').style.display = 'none';
+}
